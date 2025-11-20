@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqur2ioxgn183"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhgi2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rj33l"]
+
+[sub_resource type="Skin" id="Skin_4xowi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a202f"]
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="Ficha Azul" type="Node3D" groups=["ficha_1"]]
+
+[node name="Ficha Azul" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_bhgi2")
+mesh = SubResource("CylinderMesh_rj33l")
+skin = SubResource("Skin_4xowi")
+surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
