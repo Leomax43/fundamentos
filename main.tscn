@@ -1,5 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://d33481ocwy20i"]
+[gd_scene load_steps=33 format=3 uid="uid://d33481ocwy20i"]
 
+[ext_resource type="Script" uid="uid://cwl6jswvghau" path="res://Sol.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://evuuquceydk0" path="res://cabezal.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cp2iuxho8d5rk" path="res://GameManager.gd" id="2_0xm2m"]
 
@@ -79,11 +80,29 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+sky_top_color = Color(0.787866, 0.564083, 0.260532, 1)
+sky_horizon_color = Color(0.874812, 0.548354, 0.592364, 1)
+sky_curve = 0.0989632
+sky_cover_modulate = Color(0.905417, 0.547753, 0.841657, 1)
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+ambient_light_source = 3
+
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 31, 15, 21)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 29.775, 82.146, 0)
+shadow_enabled = true
+script = ExtResource("1_h2yge")
 
 [node name="Cinta" type="Node3D" parent="."]
 
@@ -317,7 +336,7 @@ shape = SubResource("ConcavePolygonShape3D_0odxb")
 script = ExtResource("1_ig7tw")
 
 [node name="Cabezal" type="MeshInstance3D" parent="Cabezal"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 30.4713, 12.3204, -4.81231)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 32.1683, 11.0854, -5.6374)
 mesh = SubResource("BoxMesh_h2yge")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cabezal"]
@@ -331,30 +350,83 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 0, 0)
 script = ExtResource("2_0xm2m")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 0.882353)
+anchors_preset = -1
+anchor_left = -0.0068125
+anchor_top = 0.832
+anchor_right = 1.005
+anchor_bottom = 0.997
+offset_left = 0.848
+offset_top = 3.86401
+offset_right = 1.23999
+offset_bottom = 3.94397
+color = Color(0.0196078, 0, 0.741176, 0.588235)
+metadata/_edit_use_anchors_ = true
 
 [node name="inputA" type="LineEdit" parent="CanvasLayer"]
-offset_right = 68.5625
-offset_bottom = 31.0
+anchors_preset = -1
+anchor_left = 0.077
+anchor_top = 0.858
+anchor_right = 0.274
+anchor_bottom = 0.906
+offset_left = 0.29599
+offset_top = 0.0159912
+offset_right = 0.35199
+offset_bottom = -0.0880127
 text = "Ingrese primer número: "
+metadata/_edit_use_anchors_ = true
 
 [node name="inputB" type="LineEdit" parent="CanvasLayer"]
-offset_right = 68.5625
-offset_bottom = 31.0
+anchors_preset = -1
+anchor_left = 0.078
+anchor_top = 0.923
+anchor_right = 0.277
+anchor_bottom = 0.971
+offset_left = 0.143997
+offset_top = -0.104004
+offset_right = -0.104004
+offset_bottom = -0.208069
 text = "Ingrese segundo número: "
+metadata/_edit_use_anchors_ = true
 
 [node name="BtnSumar" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
+anchors_preset = -1
+anchor_left = 0.454
+anchor_top = 0.87
+anchor_right = 0.537
+anchor_bottom = 0.944
+offset_left = 1.99194
+offset_top = 0.239929
+offset_right = 0.375977
+offset_bottom = 0.287964
 text = "SUMAR"
+metadata/_edit_use_anchors_ = true
 
 [node name="BtnRestar" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
+anchors_preset = -1
+anchor_left = 0.565035
+anchor_top = 0.866938
+anchor_right = 0.643736
+anchor_bottom = 0.945803
+offset_left = -2.92004
+offset_top = 0.223999
+offset_right = -2.58405
+offset_bottom = 0.119934
 text = "RESTAR"
+metadata/_edit_use_anchors_ = true
 
 [node name="Mensaje" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+anchors_preset = -1
+anchor_left = 0.691
+anchor_top = 0.867
+anchor_right = 0.982
+anchor_bottom = 0.963
+offset_left = -0.0320435
+offset_top = 0.18396
+offset_right = -0.264038
+offset_bottom = -0.0240479
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0xm2m")
