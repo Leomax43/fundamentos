@@ -19,8 +19,7 @@ var modo_operacion = "SUMA" # O "RESTA"
 var ejecutando = false
 
 #func _ready():
-	# Asegúrate de que el RayCast ignore al propio cabezal
-#	raycast.add_exception(self)
+	#raycast.add_exception(self)
 
 func iniciar_maquina(modo):
 	modo_operacion = modo

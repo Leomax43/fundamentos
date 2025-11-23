@@ -1,22 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d33481ocwy20i"]
+[gd_scene load_steps=6 format=3 uid="uid://d33481ocwy20i"]
 
 [ext_resource type="Script" uid="uid://evuuquceydk0" path="res://cabezal.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://ds0livsn7kqoi" path="res://GameManager.gd" id="2_0xm2m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhgi2"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_rj33l"]
-
-[sub_resource type="Skin" id="Skin_nmv0k"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2d82k"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="Skin" id="Skin_4xowi"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a202f"]
-albedo_color = Color(0, 0, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
 
@@ -138,24 +125,10 @@ mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="Fichas" type="Node3D" parent="."]
 
-[node name="Ficha Roja" type="MeshInstance3D" parent="Fichas"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 32.4293, 2.15305, 0)
-material_overlay = SubResource("StandardMaterial3D_bhgi2")
-mesh = SubResource("CylinderMesh_rj33l")
-skin = SubResource("Skin_nmv0k")
-surface_material_override/0 = SubResource("StandardMaterial3D_2d82k")
-
-[node name="Ficha Azul" type="MeshInstance3D" parent="Fichas"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 40.0703, 2.15305, 0)
-material_overlay = SubResource("StandardMaterial3D_bhgi2")
-mesh = SubResource("CylinderMesh_rj33l")
-skin = SubResource("Skin_4xowi")
-surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
-
 [node name="Cabezal" type="Node3D" parent="."]
 script = ExtResource("1_ig7tw")
 
-[node name="Cabezal" type="MeshInstance3D" parent="Cabezal"]
+[node name="cabezal" type="MeshInstance3D" parent="Cabezal"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 12.9421, 0)
 mesh = SubResource("BoxMesh_h2yge")
 surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
@@ -167,3 +140,76 @@ target_position = Vector3(0, -3, 0)
 collide_with_areas = true
 
 [node name="Marker3D" type="Marker3D" parent="Cabezal"]
+
+[node name="IntroducirDatos" type="CanvasLayer" parent="."]
+script = ExtResource("2_0xm2m")
+
+[node name="Fondo" type="ColorRect" parent="IntroducirDatos"]
+anchors_preset = -1
+anchor_top = 0.846
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.208008
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.164687, 5.77569e-07, 0.792493, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="InputA" type="LineEdit" parent="IntroducirDatos"]
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.856
+anchor_right = 0.299
+anchor_bottom = 0.917
+offset_left = 0.360001
+offset_top = 0.311951
+offset_right = 0.551971
+offset_bottom = -0.216064
+text = "Ingrese el primer número: "
+
+[node name="InputB" type="LineEdit" parent="IntroducirDatos"]
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.932
+anchor_right = 0.299
+anchor_bottom = 0.988
+offset_left = 0.360001
+offset_top = 0.0639648
+offset_right = -0.448029
+offset_bottom = -0.223999
+text = "Ingrese el segundo número: "
+
+[node name="BtnSumar" type="Button" parent="IntroducirDatos"]
+anchors_preset = -1
+anchor_left = 0.385
+anchor_top = 0.889
+anchor_right = 0.464
+anchor_bottom = 0.952
+offset_left = -0.52002
+offset_top = -0.0720215
+offset_right = 0.471985
+offset_bottom = 0.104004
+text = "SUMAR"
+
+[node name="BtnRestar" type="Button" parent="IntroducirDatos"]
+anchors_preset = -1
+anchor_left = 0.497
+anchor_top = 0.89
+anchor_right = 0.576
+anchor_bottom = 0.954
+offset_left = 0.455994
+offset_top = 0.279968
+offset_right = -0.552063
+offset_bottom = -0.192017
+text = "RESTAR"
+
+[node name="Mensaje" type="Label" parent="IntroducirDatos"]
+anchors_preset = -1
+anchor_left = 0.665
+anchor_top = 0.867
+anchor_right = 0.977
+anchor_bottom = 0.983
+offset_left = -0.0800171
+offset_top = 0.18396
+offset_right = 0.495972
+offset_bottom = 0.0159912
