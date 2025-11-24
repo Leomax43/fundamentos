@@ -182,7 +182,7 @@ func borrar_ficha(objeto):
 		# 1. ANIMACIÓN SERVO (BASTÓN)
 		var tween = create_tween()
 		tween.tween_property(brazo_servo, "rotation_degrees:x", -90.0, 0.15).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-		tween.tween_property(brazo_servo, "rotation_degrees:x", 0.0, 0.2).set_delay(0.05)
+		tween.tween_property(brazo_servo, "rotation_degrees:x", 45.0, 0.2).set_delay(0.05)
 		
 		# Esperar el golpe visual
 		await get_tree().create_timer(0.15).timeout

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d33481ocwy20i"]
+[gd_scene load_steps=47 format=3 uid="uid://d33481ocwy20i"]
 
 [ext_resource type="Script" uid="uid://b35sd67rlvpyk" path="res://Sol.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://evuuquceydk0" path="res://cabezal.gd" id="1_ig7tw"]
@@ -81,21 +81,48 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0odxb"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
+albedo_color = Color(0.118047, 0.419919, 1.92523e-07, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+material = SubResource("StandardMaterial3D_7mycd")
 size = Vector3(0.5, 6, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+albedo_color = Color(0.117647, 0.419608, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
+material = SubResource("StandardMaterial3D_272bh")
 size = Vector3(0.5, 6, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_color = Color(0.117647, 0.419608, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
+material = SubResource("StandardMaterial3D_5vw27")
 size = Vector3(0.5, 0.5, 11.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+albedo_color = Color(0.0138297, 0.286091, 1, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
+material = SubResource("StandardMaterial3D_kek77")
 size = Vector3(1.5, 0.5, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_color = Color(0.375449, 0.205012, 0.117921, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_272bh"]
+material = SubResource("StandardMaterial3D_4c57u")
 radius = 0.08
 height = 11.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
+albedo_color = Color(0.760912, 0.392339, 0.0134808, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_dg77c"]
+material = SubResource("StandardMaterial3D_efxa6")
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 
@@ -109,7 +136,7 @@ sky = SubResource("Sky_h2yge")
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 39.7375, 20, 30.7965)
+transform = Transform3D(0.984808, -0.0868241, 0.150384, 0, 0.866025, 0.5, -0.173648, -0.492404, 0.852868, 37, 10, 12)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 30, 20, 25)
@@ -456,7 +483,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -6.8, 0)
 mesh = SubResource("BoxMesh_7mycd")
 
 [node name="Servo2" type="MeshInstance3D" parent="Cabezal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33, -6.8, 0)
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.33, -6.8, 0)
 mesh = SubResource("CapsuleMesh_272bh")
 
 [node name="CajaFichas" parent="Cabezal" instance=ExtResource("5_7mycd")]
@@ -464,6 +491,10 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.8318
 
 [node name="PuntoCaja" type="Marker3D" parent="Cabezal/CajaFichas"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, -2.33554, 7.63314)
+
+[node name="Sensor" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, -7.8, 0.1)
+mesh = SubResource("PrismMesh_dg77c")
 
 [node name="IntroducirDatos" type="CanvasLayer" parent="."]
 script = ExtResource("2_0xm2m")
