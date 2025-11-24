@@ -6,7 +6,12 @@ extends CanvasLayer
 @onready var input_a = $InputA
 @onready var input_b = $InputB
 @onready var label_msg = $Mensaje
-
+@onready var cam_general = get_parent().get_node("Camera3D")
+@onready var cam_top = get_parent().get_node("CamaraTop")
+@onready var cam_detalle = get_parent().get_node("CamaraDetalle") # Opcional si la creaste
+@onready var btn_cam1 = $BtnCam1
+@onready var btn_cam2 = $BtnCam2
+@onready var btn_cam3 = $BtnCam3 # Opcional
 # Distancias y ajustes
 var inicio_cinta_x = 32.0
 var paso = 2.5
@@ -20,7 +25,17 @@ func _ready():
 	$BtnIniciarSuma.pressed.connect(func(): iniciar_maquina("SUMA"))
 	$BtnIniciarResta.pressed.connect(func(): iniciar_maquina("RESTA"))
 	cabezal.maquina_termino.connect(_on_maquina_termino)
+	btn_cam1.pressed.connect(func(): cambiar_camara(cam_general))
+	btn_cam2.pressed.connect(func(): cambiar_camara(cam_top))
+	btn_cam3.pressed.connect(func(): cambiar_camara(cam_detalle))
 
+
+
+func cambiar_camara(nueva_camara):
+	if nueva_camara:
+		nueva_camara.make_current()
+		
+	
 func crear_fichas():
 	var txt_a = input_a.text
 	var txt_b = input_b.text
