@@ -14,3 +14,7 @@ config/name="Fundamentos"
 run/main_scene="uid://d33481ocwy20i"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[physics]
+
+3d/default_gravity=-9.8

@@ -26,7 +26,7 @@ func configurar_y_arrancar(modo):
 	# 1. CONTROL DE ERRORES
 	if not txt_a.is_valid_int() or not txt_b.is_valid_int():
 		label_msg.text = "Error: Por favor ingresa solo números enteros."
-		return
+		
 		
 	var num_a = int(txt_a)
 	var num_b = int(txt_b)
@@ -81,7 +81,7 @@ func generar_fichas_visuales(cadena):
 		nodo_fichas.add_child(nueva_ficha)
 		# Posicionamos cada ficha separada por 'paso'
 		var pos_x = inicio_cinta_x + (i * paso)
-		nueva_ficha.position = Vector3(pos_x, 2.15, 0) # 2.15 es la altura Y de tus fichas
+		nueva_ficha.position = Vector3(pos_x, 3, 0) # 2.15 es la altura Y de tus fichas --> se cambió el valor a 3
 
 func _on_maquina_termino(mensaje):
 	label_msg.text = "Fin: " + mensaje

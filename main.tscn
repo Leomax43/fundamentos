@@ -85,7 +85,7 @@ albedo_color = Color(0, 1, 1, 1)
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.116999, 0.306322, -0.944711, -0.014254, 0.951664, 0.306811, 0.99303, -0.0224306, 0.11571, -0.665373, 14.1701, 0)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 32, 20, 19)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 
@@ -321,14 +321,14 @@ shape = SubResource("ConcavePolygonShape3D_0odxb")
 script = ExtResource("1_ig7tw")
 
 [node name="cabezal" type="MeshInstance3D" parent="Cabezal"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 12.9421, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 6.44528, 10.191, -1.10052)
 mesh = SubResource("BoxMesh_h2yge")
 surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cabezal"]
 
 [node name="RayCast3D" type="RayCast3D" parent="Cabezal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5306, 12.2936, -2.30387)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06016, 6.54004, -2.30387)
 target_position = Vector3(0, -3, 0)
 collide_with_areas = true
 debug_shape_custom_color = Color(0.949757, 0.144754, 0.427407, 1)
@@ -360,6 +360,7 @@ offset_top = 0.311951
 offset_right = 0.551971
 offset_bottom = -0.216064
 text = "Ingrese el primer número: "
+metadata/_edit_use_anchors_ = true
 
 [node name="InputB" type="LineEdit" parent="IntroducirDatos"]
 anchors_preset = -1
@@ -372,6 +373,7 @@ offset_top = 0.0639648
 offset_right = -0.448029
 offset_bottom = -0.223999
 text = "Ingrese el segundo número: "
+metadata/_edit_use_anchors_ = true
 
 [node name="BtnSumar" type="Button" parent="IntroducirDatos"]
 anchors_preset = -1
@@ -384,6 +386,7 @@ offset_top = -0.0720215
 offset_right = 0.471985
 offset_bottom = 0.104004
 text = "SUMAR"
+metadata/_edit_use_anchors_ = true
 
 [node name="BtnRestar" type="Button" parent="IntroducirDatos"]
 anchors_preset = -1
@@ -396,14 +399,17 @@ offset_top = 0.279968
 offset_right = -0.552063
 offset_bottom = -0.192017
 text = "RESTAR"
+metadata/_edit_use_anchors_ = true
 
 [node name="Mensaje" type="Label" parent="IntroducirDatos"]
 anchors_preset = -1
-anchor_left = 0.665
-anchor_top = 0.867
-anchor_right = 0.977
+anchor_left = 0.648
+anchor_top = 0.869
+anchor_right = 0.844
 anchor_bottom = 0.983
-offset_left = -0.0800171
-offset_top = 0.18396
-offset_right = 0.495972
-offset_bottom = 0.0159912
+offset_left = 0.504028
+offset_top = -0.112
+offset_right = -0.288025
+offset_bottom = 1.01599
+justification_flags = 195
+metadata/_edit_use_anchors_ = true
