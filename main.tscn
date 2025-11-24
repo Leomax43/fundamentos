@@ -1,5 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://d33481ocwy20i"]
+[gd_scene load_steps=37 format=3 uid="uid://d33481ocwy20i"]
 
+[ext_resource type="Script" uid="uid://b35sd67rlvpyk" path="res://Sol.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://evuuquceydk0" path="res://cabezal.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ds0livsn7kqoi" path="res://GameManager.gd" id="2_0xm2m"]
 
@@ -78,21 +79,44 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(0.5, 6, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
-albedo_color = Color(0, 1, 1, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
+size = Vector3(0.5, 6, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
+size = Vector3(0.5, 0.5, 11.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
+size = Vector3(1.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_272bh"]
+radius = 0.08
+height = 12.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
 
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 32, 20, 19)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 31.5, 20, 20)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 30, 20, 25)
+shadow_enabled = true
+script = ExtResource("1_h2yge")
 
 [node name="Cinta" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 2, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D"]
@@ -101,7 +125,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_0xm2m")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 2.73206, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 4.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -111,7 +135,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_h2yge")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 5.38318, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 7, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D3"]
@@ -120,7 +144,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_1bvp3")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 7.8675, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 9.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D4"]
@@ -129,7 +153,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_lquwl")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 10.5996, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 12, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -139,7 +163,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_7mycd")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 13.2507, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 14.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D6"]
@@ -148,7 +172,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_272bh")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 16.0389, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 17, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D7"]
@@ -157,7 +181,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_5vw27")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 18.771, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 19.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -167,7 +191,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_kek77")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 21.4221, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 22, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D9"]
@@ -176,7 +200,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_4c57u")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 23.9064, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 24.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D10"]
@@ -185,7 +209,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_efxa6")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 26.6385, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 27, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -195,7 +219,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_dg77c")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 29.2896, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 29.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D12"]
@@ -204,7 +228,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_ycdy4")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 32.2141, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 32, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D13"]
@@ -213,7 +237,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_w48qg")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 35.1432, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 34.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -223,7 +247,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_vivmo")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 37.7943, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 37, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D15"]
@@ -232,7 +256,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_2cqfq")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 40.2786, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 39.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D16"]
@@ -241,7 +265,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_yaehf")
 
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 43.0107, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 42, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -251,7 +275,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_074og")
 
 [node name="MeshInstance3D18" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 45.6618, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 44.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D18"]
@@ -260,7 +284,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_cegan")
 
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 48.45, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 47, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D19"]
@@ -269,7 +293,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_82xsv")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 51.1821, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 49.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -279,7 +303,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_getpj")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 53.8332, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 52, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D21"]
@@ -288,7 +312,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_ryguw")
 
 [node name="MeshInstance3D22" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 56.3175, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 54.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D22"]
@@ -297,7 +321,7 @@ mesh = SubResource("BoxMesh_0xm2m")
 shape = SubResource("ConcavePolygonShape3D_d13ii")
 
 [node name="MeshInstance3D23" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 59.0496, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 57, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 skeleton = NodePath("../..")
 
@@ -307,7 +331,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_1u8w0")
 
 [node name="MeshInstance3D24" type="MeshInstance3D" parent="Cinta"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 61.7007, 0, 0.00044179)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 59.5, 0, 0)
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D24"]
@@ -318,22 +342,37 @@ shape = SubResource("ConcavePolygonShape3D_0odxb")
 [node name="Fichas" type="Node3D" parent="."]
 
 [node name="Cabezal" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8147, 12.9591, -3.8147e-06)
 script = ExtResource("1_ig7tw")
 
-[node name="cabezal" type="MeshInstance3D" parent="Cabezal"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 6.44528, 10.191, -1.10052)
-mesh = SubResource("BoxMesh_h2yge")
-surface_material_override/0 = SubResource("StandardMaterial3D_ig7tw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cabezal"]
-
 [node name="RayCast3D" type="RayCast3D" parent="Cabezal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06016, 6.54004, -2.30387)
+transform = Transform3D(1, 0, 0, 0, 0.847493, -0.530807, 0, 0.530807, 0.847493, 2.46568, 6.54004, -2.30387)
 target_position = Vector3(0, -3, 0)
 collide_with_areas = true
 debug_shape_custom_color = Color(0.949757, 0.144754, 0.427407, 1)
 
 [node name="Marker3D" type="Marker3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25555, 0.521182, -0.226929)
+
+[node name="PilarDerecho" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, 5.5)
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="PilarIzquierdo" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, -5.5)
+mesh = SubResource("BoxMesh_1bvp3")
+
+[node name="VigaSuperior" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.3, 0)
+mesh = SubResource("BoxMesh_lquwl")
+
+[node name="Servo1" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -6.8, 0)
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Servo2" type="MeshInstance3D" parent="Cabezal"]
+transform = Transform3D(1, 0, 0, 0, 0.235142, -0.971961, 0, 0.971961, 0.235142, 1.33, -6.8, 0)
+mesh = SubResource("CapsuleMesh_272bh")
 
 [node name="IntroducirDatos" type="CanvasLayer" parent="."]
 script = ExtResource("2_0xm2m")
@@ -413,3 +452,6 @@ offset_right = -0.288025
 offset_bottom = 1.01599
 justification_flags = 195
 metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0xm2m")

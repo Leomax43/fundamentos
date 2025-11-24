@@ -127,30 +127,30 @@ func mover(direccion, nuevo_estado):
 
 func borrar_ficha(objeto):
 	if objeto and objeto is RigidBody3D:
-		print("¡PATEANDO FICHA!")
-		
-		# 1. Desactivar la lógica de la ficha para que la máquina no la vuelva a leer
-		# (La sacamos de los grupos para que sea "invisible" al RayCast)
+		# 1. Desconectar lógica: Ya no es una ficha válida para la máquina
 		if objeto.is_in_group("ficha_1"): objeto.remove_from_group("ficha_1")
 		if objeto.is_in_group("ficha_0"): objeto.remove_from_group("ficha_0")
 		
-		# 2. FÍSICA: Aplicar un impulso repentino
-		# Vector3(x, y, z) -> La empujamos hacia arriba (Y) y hacia afuera (Z)
-		var direccion_empuje = Vector3(randf_range(-1, 1), 5, 5) 
-		objeto.apply_central_impulse(direccion_empuje)
+		# 2. SIMULACIÓN DEL SERVO (Acción Mecánica)
+		# En lugar de explotar hacia arriba, la empujamos fuerte hacia el lado (Eje Z)
+		# como si un brazo mecánico la golpeara hacia el "depósito de fichas".
 		
-		# 3. Añadir un torque (giro) para que se vea genial al volar
-		objeto.apply_torque(Vector3(10, 0, 0))
+		# Vector3(X, Y, Z) -> (0 avance, 2 saltito suave, 8 empujón lateral)
+		var fuerza_servo = Vector3(0, 2, 8) 
+		objeto.apply_central_impulse(fuerza_servo)
 		
-		# 4. Programar su destrucción después de 2 segundos (para limpiar memoria)
-		var tween = create_tween()
-		tween.tween_interval(2.0) # Esperar 2 segundos
-		tween.tween_callback(objeto.queue_free) # Borrar
-	
+		# Le damos un poco de rotación aleatoria para realismo
+		objeto.apply_torque(Vector3(randf(), randf(), randf()) * 5.0)
+		
+		# 3. Limpieza: Borrar el nodo después de 3 segundos (cuando ya esté fuera de pantalla)
+		await get_tree().create_timer(3.0).timeout
+		if is_instance_valid(objeto):
+			objeto.queue_free()
+			
 	elif objeto:
-		# Si por alguna razón no es físico, borrar normal
-		objeto.queue_free()
-
+		objeto.queue_free() # Si no tiene físicas, borrar directo
+		
+		
 func escribir_ficha(tipo):
 	var nueva_ficha
 	if tipo == "1": nueva_ficha = ficha_1_scene.instantiate()
