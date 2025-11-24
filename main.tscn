@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://d33481ocwy20i"]
+[gd_scene load_steps=38 format=3 uid="uid://d33481ocwy20i"]
 
 [ext_resource type="Script" uid="uid://b35sd67rlvpyk" path="res://Sol.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://evuuquceydk0" path="res://cabezal.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ds0livsn7kqoi" path="res://GameManager.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bsbfxv1ujmivw" path="res://ficha_roja.tscn" id="2_1bvp3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
 
@@ -106,11 +107,12 @@ sky = SubResource("Sky_h2yge")
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 31.5, 20, 20)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 39.7375, 20, 30.7965)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 30, 20, 25)
 shadow_enabled = true
+sky_mode = 1
 script = ExtResource("1_h2yge")
 
 [node name="Cinta" type="Node3D" parent="."]
@@ -339,10 +341,87 @@ mesh = SubResource("BoxMesh_0xm2m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D24/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0odxb")
 
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 62, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D25"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D25/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_82xsv")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 64.5, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D26"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D26/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_getpj")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 67, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D27"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D27/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ryguw")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 69.5, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D28"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D28/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_d13ii")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 72, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D29"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D29/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1u8w0")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 74.5, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D30"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D30/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0odxb")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 74.5, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D31"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D31/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0odxb")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="Cinta"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 10, 77, 0, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cinta/MeshInstance3D32"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinta/MeshInstance3D32/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0odxb")
+
 [node name="Fichas" type="Node3D" parent="."]
 
+[node name="Ficha Roja" parent="Fichas" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.676, 4.33845, 0)
+
 [node name="Cabezal" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8147, 12.9591, -3.8147e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 12.959, 0)
 script = ExtResource("1_ig7tw")
 
 [node name="RayCast3D" type="RayCast3D" parent="Cabezal"]

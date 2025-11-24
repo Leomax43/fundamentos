@@ -6,10 +6,11 @@ extends CanvasLayer
 @onready var input_a = $InputA
 @onready var input_b = $InputB
 @onready var label_msg = $Mensaje
+@onready var cinta = get_parent().get_node("Cinta")
 
 # Configuración de la cinta
 var inicio_cinta_x = 32.0 # Ajusta esto a donde empieza tu primer bloque de cinta visual
-var paso = 1.5 # La misma distancia que usa tu cabezal
+var paso = 2.5 # La misma distancia que usa tu cabezal
 
 func _ready():
 	# Conectamos los botones
@@ -65,8 +66,16 @@ func configurar_y_arrancar(modo):
 	label_msg.text = "Calculando " + modo + "..."
 
 func limpiar_cinta():
-	for hijo in nodo_fichas.get_children():
-		hijo.queue_free()
+	# 1. Recorrer todos los hijos de la cinta
+	for hijo in cinta.get_children():
+		# 2. Preguntar: "¿Eres una ficha?" (Usando los grupos)
+		if hijo.is_in_group("ficha_1") or hijo.is_in_group("ficha_0"):
+			# Si es ficha, la borramos. Los bloques blancos (MeshInstance) se quedan.
+			hijo.queue_free()
+	
+	# 3. ¡CRÍTICO! Devolver la cinta al inicio (Rebobinar)
+	# Si no haces esto, la cinta seguirá desplazada de la operación anterior
+	cinta.position = Vector3(0, 0, 0)
 
 func generar_fichas_visuales(cadena):
 	for i in range(cadena.length()):
@@ -78,11 +87,23 @@ func generar_fichas_visuales(cadena):
 		else:
 			nueva_ficha = cabezal.ficha_0_scene.instantiate()
 			
-		nodo_fichas.add_child(nueva_ficha)
-		# Posicionamos cada ficha separada por 'paso'
-		var pos_x = inicio_cinta_x + (i * paso)
-		nueva_ficha.position = Vector3(pos_x, 3, 0) # 2.15 es la altura Y de tus fichas --> se cambió el valor a 3
+		cinta.add_child(nueva_ficha)
+		
+		# --- CORRECCIÓN 1: Usar Freeze para evitar que salgan volando ---
+		# Si la ficha es un RigidBody, la congelamos para que sea estática
+		if nueva_ficha is RigidBody3D:
+			nueva_ficha.freeze = true 
+			# Ojo: Si luego el cabezal necesita empujarlas, tendrías que 
+			# poner nueva_ficha.freeze = false en el momento del empuje.
+			# Pero como tu lógica usa queue_free (borrar), ¡esto es perfecto!
 
+		# Posicionamos cada ficha
+		var pos_x = inicio_cinta_x + (i * paso)
+		
+		# --- CORRECCIÓN 2: Altura más baja ---
+		# Cambiamos el 3 por 0.6 (ajústalo según el grosor de tu cinta)
+		nueva_ficha.position = Vector3(pos_x, 0.6, 0)
+		
 func _on_maquina_termino(mensaje):
 	label_msg.text = "Fin: " + mensaje
 	# Opcional: Contar las fichas azules restantes para dar el resultado numérico

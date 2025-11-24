@@ -16,6 +16,7 @@ radius = 1.0
 [node name="Ficha Roja" type="RigidBody3D" groups=["ficha_0"]]
 axis_lock_linear_x = true
 axis_lock_linear_z = true
+freeze = true
 
 [node name="Ficha Roja" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
