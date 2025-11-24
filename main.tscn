@@ -462,6 +462,9 @@ mesh = SubResource("CapsuleMesh_272bh")
 [node name="CajaFichas" parent="Cabezal" instance=ExtResource("5_7mycd")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.831863, -9.6534, -8.04903)
 
+[node name="PuntoCaja" type="Marker3D" parent="Cabezal/CajaFichas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, -2.33554, 7.63314)
+
 [node name="IntroducirDatos" type="CanvasLayer" parent="."]
 script = ExtResource("2_0xm2m")
 
