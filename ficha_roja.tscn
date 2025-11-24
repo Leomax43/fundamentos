@@ -14,8 +14,11 @@ albedo_color = Color(1, 0, 0, 1)
 radius = 1.0
 
 [node name="Ficha Roja" type="RigidBody3D" groups=["ficha_0"]]
+collision_layer = 2
 axis_lock_linear_x = true
 axis_lock_linear_z = true
+can_sleep = false
+lock_rotation = true
 freeze = true
 
 [node name="Ficha Roja" type="MeshInstance3D" parent="."]

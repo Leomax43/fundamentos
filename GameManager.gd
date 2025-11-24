@@ -1,120 +1,121 @@
 extends CanvasLayer
 
-# Referencias a los nodos de la escena
+# === REFERENCIAS ===
 @onready var cabezal = get_parent().get_node("Cabezal")
-@onready var nodo_fichas = get_parent().get_node("Fichas")
+@onready var cinta = get_parent().get_node("Cinta")
 @onready var input_a = $InputA
 @onready var input_b = $InputB
 @onready var label_msg = $Mensaje
-@onready var cinta = get_parent().get_node("Cinta")
 
-# Configuración de la cinta
-var inicio_cinta_x = 32.0 # Ajusta esto a donde empieza tu primer bloque de cinta visual
-var paso = 2.5 # La misma distancia que usa tu cabezal
+# Distancias y ajustes
+var inicio_cinta_x = 32.0
+var paso = 2.5
+
+# === NUEVO: VARIABLES PARA MEMORIA ===
+var memoria_a = 0
+var memoria_b = 0
 
 func _ready():
-	# Conectamos los botones
-	$BtnSumar.pressed.connect(func(): configurar_y_arrancar("SUMA"))
-	$BtnRestar.pressed.connect(func(): configurar_y_arrancar("RESTA"))
-	
-	# Conectamos la señal del cabezal (que crearemos en el paso 4)
+	$BtnCrearFichas.pressed.connect(crear_fichas)
+	$BtnIniciarSuma.pressed.connect(func(): iniciar_maquina("SUMA"))
+	$BtnIniciarResta.pressed.connect(func(): iniciar_maquina("RESTA"))
 	cabezal.maquina_termino.connect(_on_maquina_termino)
 
-func configurar_y_arrancar(modo):
+func crear_fichas():
 	var txt_a = input_a.text
 	var txt_b = input_b.text
-	
-	# 1. CONTROL DE ERRORES
+
 	if not txt_a.is_valid_int() or not txt_b.is_valid_int():
-		label_msg.text = "Error: Por favor ingresa solo números enteros."
-		
-		
+		label_msg.text = "Error: ingresa solo números."
+		return
+
 	var num_a = int(txt_a)
 	var num_b = int(txt_b)
-	
+
 	if num_a < 0 or num_b < 0:
-		label_msg.text = "Error: Solo números positivos."
+		label_msg.text = "Error: números positivos."
 		return
-
-	if modo == "RESTA" and num_a < num_b:
-		label_msg.text = "Error matemático: El primer número debe ser mayor para restar."
+	if num_a > 9 or num_b > 9:
+		label_msg.text = "Error: Máximo 9 por número (Solo un dígito)."
 		return
+	# === NUEVO: GUARDAMOS LOS VALORES VALIDADOS ===
+	memoria_a = num_a
+	memoria_b = num_b
+	# ==============================================
 
-	# 2. PREPARAR LA CINTA (Traducción Decimal -> Unario)
 	limpiar_cinta()
-	
-	# Construimos la cadena: Ej. 2 + 1 -> "11" + "0" + "1"
-	# La lógica de tu máquina usa '0' como separador
-	var cadena_maquina = ""
-	
-	# Añadir A
-	for i in range(num_a): cadena_maquina += "1"
-	
-	# Añadir Separador
-	cadena_maquina += "0"
-	
-	# Añadir B
-	for i in range(num_b): cadena_maquina += "1"
-	
-	# Instanciar las fichas en el mundo 3D
-	generar_fichas_visuales(cadena_maquina)
-	
-	# 3. REINICIAR CABEZAL
-	# Movemos el cabezal al inicio (un poco antes de la primera ficha)
-	cabezal.position.x = inicio_cinta_x - (paso * 1) 
+
+	# Crear cadena unaria
+	var cadena = ""
+	for i in range(num_a): cadena += "1"
+	cadena += "0"
+	for i in range(num_b): cadena += "1"
+
+	generar_fichas_visuales(cadena)
+
+	label_msg.text = "Fichas creadas (" + str(num_a) + " y " + str(num_b) + "). Lista para operar."
+
+func iniciar_maquina(modo):
+	# === NUEVO: VALIDACIÓN DE RESTA IMPOSIBLE ===
+	if modo == "RESTA":
+		if memoria_a < memoria_b:
+			label_msg.text = "⚠️ ERROR MATEMÁTICO: No se puede restar " + str(memoria_a) + " - " + str(memoria_b) + " (Resultado negativo)."
+			return # ¡ABORTAR MISIÓN! No arranca la máquina.
+	# ============================================
+
+	# Reposicionar cabezal
+	cabezal.position.x = inicio_cinta_x
 	cabezal.iniciar_maquina(modo)
-	label_msg.text = "Calculando " + modo + "..."
+	label_msg.text = "Procesando " + modo + "..."
+
+
+# =====================================================
+# FUNCIONES DE SOPORTE
+# =====================================================
 
 func limpiar_cinta():
-	# 1. Recorrer todos los hijos de la cinta
 	for hijo in cinta.get_children():
-		# 2. Preguntar: "¿Eres una ficha?" (Usando los grupos)
 		if hijo.is_in_group("ficha_1") or hijo.is_in_group("ficha_0"):
-			# Si es ficha, la borramos. Los bloques blancos (MeshInstance) se quedan.
 			hijo.queue_free()
-	
-	# 3. ¡CRÍTICO! Devolver la cinta al inicio (Rebobinar)
-	# Si no haces esto, la cinta seguirá desplazada de la operación anterior
+
+	# Muy importante: reiniciar posición
 	cinta.position = Vector3(0, 0, 0)
+
 
 func generar_fichas_visuales(cadena):
 	for i in range(cadena.length()):
-		var caracter = cadena[i]
+		var c = cadena[i]
 		var nueva_ficha
-		
-		if caracter == "1":
-			nueva_ficha = cabezal.ficha_1_scene.instantiate()
-		else:
-			nueva_ficha = cabezal.ficha_0_scene.instantiate()
-			
-		cinta.add_child(nueva_ficha)
-		
-		# --- CORRECCIÓN 1: Usar Freeze para evitar que salgan volando ---
-		# Si la ficha es un RigidBody, la congelamos para que sea estática
-		if nueva_ficha is RigidBody3D:
-			nueva_ficha.freeze = true 
-			# Ojo: Si luego el cabezal necesita empujarlas, tendrías que 
-			# poner nueva_ficha.freeze = false en el momento del empuje.
-			# Pero como tu lógica usa queue_free (borrar), ¡esto es perfecto!
 
-		# Posicionamos cada ficha
-		var pos_x = inicio_cinta_x + (i * paso)
-		
-		# --- CORRECCIÓN 2: Altura más baja ---
-		# Cambiamos el 3 por 0.6 (ajústalo según el grosor de tu cinta)
-		nueva_ficha.position = Vector3(pos_x, 0.6, 0)
-		
+		# === CORRECCIÓN AQUÍ ===
+		# Usamos los nombres nuevos que definimos en cabezal.gd
+		if c == "1":
+			nueva_ficha = cabezal.molde_azul.instantiate() 
+		else:
+			nueva_ficha = cabezal.molde_rojo.instantiate()
+		# =======================
+
+		cinta.add_child(nueva_ficha)
+
+		# Congelar para evitar que exploten al instanciar
+		if nueva_ficha is RigidBody3D:
+			nueva_ficha.freeze = true
+
+		# Posición física
+		var px = inicio_cinta_x + (i * paso)
+		nueva_ficha.position = Vector3(px, 1.8, 0)
+
+# =====================================================
+# FINALIZACIÓN
+# =====================================================
+
 func _on_maquina_termino(mensaje):
-	label_msg.text = "Fin: " + mensaje
-	# Opcional: Contar las fichas azules restantes para dar el resultado numérico
-	var resultado = contar_resultado()
-	label_msg.text += " | Resultado Decimal: " + str(resultado)
+	label_msg.text = "Fin: " + mensaje + " | Resultado Decimal: " + str(contar_resultado())
+
 
 func contar_resultado():
 	var total = 0
-	for ficha in nodo_fichas.get_children():
-		# Cuidado: queue_free no es inmediato, verifica si no está 'queued_for_deletion'
-		if is_instance_valid(ficha) and not ficha.is_queued_for_deletion():
-			if ficha.is_in_group("ficha_1"):
-				total += 1
+	for hijo in cinta.get_children():
+		if hijo.is_in_group("ficha_1") and not hijo.is_queued_for_deletion():
+			total += 1
 	return total

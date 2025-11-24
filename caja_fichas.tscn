@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2w4o0h00v1s6"]
+
+[ext_resource type="PackedScene" uid="uid://bsbfxv1ujmivw" path="res://ficha_roja.tscn" id="1_6g5pn"]
+[ext_resource type="PackedScene" uid="uid://cqur2ioxgn183" path="res://ficha_azul.tscn" id="2_e5cue"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6xcp8"]
+
+[node name="CajaFichas" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_6xcp8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 10, 0, 0, 0, 1, 8.25135, 0, 0)
+mesh = SubResource("BoxMesh_6xcp8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 1, 4.15013, 2.49854, -0.0594196)
+mesh = SubResource("BoxMesh_6xcp8")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-07, 0, 1, 0, 10, 0, -20, 0, -4.37114e-08, -2.2482, 0, 9.70917)
+mesh = SubResource("BoxMesh_6xcp8")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-07, 0, 1, 0, 10, 0, -20, 0, -4.37114e-08, 10.225, 0, 9.5993)
+mesh = SubResource("BoxMesh_6xcp8")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(12, 0, 0, 0, 10, 0, 0, 0, 1, 4.15013, 0.0126722, 19.0455)
+mesh = SubResource("BoxMesh_6xcp8")
+
+[node name="Ficha Roja" parent="." instance=ExtResource("1_6g5pn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.94712, 11.2908)
+
+[node name="Ficha Roja2" parent="." instance=ExtResource("1_6g5pn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.96831, 9.55614)
+
+[node name="Ficha Azul" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, 3.70428, 5.68355)
+
+[node name="Ficha Azul2" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, 3.70428, 5.68355)
+
+[node name="Ficha Azul3" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, 3.70428, 9.93822)
+
+[node name="Ficha Azul4" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, 3.70428, 9.93822)
+
+[node name="Ficha Azul5" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, 3.70428, 10.6488)
+
+[node name="Ficha Azul6" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, 3.70428, 10.6488)
+
+[node name="Ficha Azul7" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, 3.70428, 14.9034)
+
+[node name="Ficha Azul8" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, 3.70428, 14.9034)
+
+[node name="Ficha Azul9" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, -0.437423, 5.68355)
+
+[node name="Ficha Azul10" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, -0.437423, 5.68355)
+
+[node name="Ficha Azul11" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, -0.437423, 9.93822)
+
+[node name="Ficha Azul12" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, -0.437423, 9.93822)
+
+[node name="Ficha Azul13" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, -0.437423, 10.6488)
+
+[node name="Ficha Azul14" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, -0.437423, 10.6488)
+
+[node name="Ficha Azul15" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69682, -0.437423, 14.9034)
+
+[node name="Ficha Azul16" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97533, -0.437423, 14.9034)
+
+[node name="Ficha Azul17" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99671, -2.13412, 5.68355)
+
+[node name="Ficha Azul18" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724774, -2.13412, 5.68355)
+
+[node name="Ficha Azul19" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99671, -2.13412, 9.93822)
+
+[node name="Ficha Azul20" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724774, -2.13412, 9.93822)
+
+[node name="Ficha Azul21" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99671, -2.13412, 10.6488)
+
+[node name="Ficha Azul22" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724774, -2.13412, 10.6488)
+
+[node name="Ficha Azul23" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99671, -2.13412, 14.9034)
+
+[node name="Ficha Azul24" parent="." instance=ExtResource("2_e5cue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724774, -2.13412, 14.9034)

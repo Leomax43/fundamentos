@@ -14,6 +14,7 @@ albedo_color = Color(0, 0, 1, 1)
 radius = 1.0
 
 [node name="Ficha Azul" type="RigidBody3D" groups=["ficha_1"]]
+collision_layer = 2
 axis_lock_linear_x = true
 axis_lock_linear_z = true
 freeze = true
